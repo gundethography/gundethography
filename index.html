@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GUNDETHOGRAPHY — Fotografer & Video Editor</title>
+  <meta name="description" content="Portofolio fotografi dan videografi GUNDETHOGRAPHY — dokumentasi acara, konten media sosial, video profil, dan editing profesional." />
+  <meta name="author" content="Gundethography" />
+
+  <!-- ================= FONT: Playfair Display (judul) + Inter (teks) ================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,800;0,900;1,500;1,700&display=swap" rel="stylesheet" />
+
+  <!-- ================= IKON: Font Awesome 6 (CDN) ================= -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <!-- ================= STYLING: CSS MURNI (INTERNAL) ================= -->
+  <style>
+    /* ================================================================
+       TOKEN WARNA — terinspirasi deck cetak: pelat arang + karton krem
+       + aturan emas (gold foil). Ubah di sini untuk mengganti warna situs.
+       ================================================================ */
+    :root {
+      --ink:        #14130F;   /* pelat arang gelap */
+      --ink-2:      #1C1A15;   /* kartu gelap */
+      --ink-3:      #262319;   /* garis gelap */
+      --cream:      #F4ECDD;   /* karton krem */
+      --paper:      #FAF4E8;   /* kertas terang */
+      --gold:       #D2A24C;   /* emas (aksen utama) */
+      --gold-light: #E8C88A;
+      --gold-deep:  #8C6A2B;
+      --brown:      #6B6157;   /* netral hangat (bukan abu murni) */
+      --brown-soft: #8A7E71;
+      --violet:     #7C5CFF;   /* aksen kedua (hanya ring/hover) */
+      --line-dark:  rgba(210,162,76,0.28);
+      --line-cream: rgba(107,97,87,0.22);
+      --shadow-lg:  0 30px 70px -30px rgba(20,19,15,0.55);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--ink);
+      color: var(--cream);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    ::selection { background: var(--gold); color: var(--ink); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 9px; height: 9px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-deep); border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    /* ================================================================
+       TIPOGRAFI DASAR
+       ================================================================ */
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .eyebrow::after {
+      content: "";
+      width: 52px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.55;
+    }
+    .band--cream .eyebrow, .band--paper .eyebrow { color: var(--gold-deep); }
+    .band--cream .eyebrow::after, .band--paper .eyebrow::after { background: var(--gold-deep); opacity: 0.5; }
+
+    .display {
+      font-family: var(--serif);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.018em;
+      margin: 1.1rem 0 0;
+      font-size: clamp(2.5rem, 6.2vw, 5.1rem);
+    }
+    .display--md { font-size: clamp(2.15rem, 4.6vw, 3.65rem); }
+    .lede {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.02rem, 1.65vw, 1.32rem);
+      line-height: 1.55;
+      color: var(--brown-soft);
+      margin: 1.15rem 0 0;
+      max-width: 62ch;
+    }
+    .band--cream .lede, .band--paper .lede { color: var(--brown); }
+    .rule-gold {
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.42;
+      border: 0;
+      margin: 1.6rem 0 0;
+    }
+
+    /* ================================================================
+       BAND / SECTION — pita halaman penuh (gelap & krem berselang)
+       ================================================================ */
+    .band {
+      position: relative;
+      padding: clamp(4.25rem, 9vw, 8.25rem) 1.5rem;
+      overflow: hidden;
+    }
+    .band--dark  { background: var(--ink); color: var(--cream); }
+    .band--cream { background: var(--cream); color: var(--ink); }
+    .band--paper { background: var(--paper); color: var(--ink); }
+    .inner {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    /* Nomor halaman ala deck cetak */
+    .page-no {
+      position: absolute;
+      right: clamp(1.25rem, 4vw, 3rem);
+      bottom: clamp(1.25rem, 3vw, 2.4rem);
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      opacity: 0.72;
+      font-variant-numeric: tabular-nums;
+      z-index: 3;
+    }
+    .band--cream .page-no, .band--paper .page-no { color: var(--gold-deep); }
+
+    /* Butiran film (grain) halus pada band gelap */
+    .grain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.32;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+    }
+
+    /* ================================================================
+       HEADER / NAVIGASI
+       ================================================================ */
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 90;
+      transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+      padding: 1.05rem 1.5rem;
+      background: rgba(20, 19, 15, 0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(210, 162, 76, 0.16);
+    }
+    .site-header.scrolled {
+      background: rgba(20, 19, 15, 0.94);
+      box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.85);
+    }
+    .header-inner {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      flex: none;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--gold);
+      background: rgba(210, 162, 76, 0.08);
+    }
+    .brand-name {
+      font-family: var(--serif);
+      font-weight: 800;
+      font-size: 1.16rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .brand-sub {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.15rem, 2.6vw, 2.45rem);
+    }
+    .nav-close { display: none; }
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.15rem, 2.4vw, 2.35rem);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-link {
+      font-size: 0.765rem;
+      font-weight: 500;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: rgba(244, 236, 221, 0.72);
+      position: relative;
+      padding: 0.35rem 0;
+      transition: color 0.25s ease;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1.5px;
+      width: 0;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--gold-light); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.72rem 1.35rem;
+      border-radius: 999px;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+    .nav-cta:hover { background: transparent; color: var(--gold-light); transform: translateY(-2px); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid rgba(210, 162, 76, 0.45);
+      color: var(--gold-light);
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 940px) {
+      .nav-toggle { display: grid; place-items: center; }
+      .nav-wrap {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 19, 15, 0.975);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.65rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.4s cubic-bezier(0.6, 0.05, 0.2, 1), opacity 0.3s ease;
+        z-index: 95;
+      }
+      .nav-wrap.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .nav-list { flex-direction: column; gap: 1.35rem; text-align: center; }
+      .nav-link { font-size: 1.05rem; letter-spacing: 0.22em; }
+      .nav-close {
+        display: block;
+        position: absolute;
+        top: 1.4rem;
+        right: 1.55rem;
+        background: none;
+        border: 0;
+        color: var(--gold-light);
+        font-size: 1.65rem;
+        line-height: 1;
+      }
+    }
+
+    /* ================================================================
+       TOMBOL / CTA
+       ================================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.72rem;
+      font-size: 0.79rem;
+      font-weight: 600;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      padding: 1.02rem 1.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn--solid { background: var(--gold); color: var(--ink); }
+    .btn--solid:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-3px); box-shadow: 0 22px 38px -22px rgba(210, 162, 76, 0.85); }
+    .btn--ghost { background: transparent; color: var(--gold-light); }
+    .btn--ghost:hover { background: rgba(210, 162, 76, 0.14); color: var(--cream); transform: translateY(-3px); }
+    .btn--dark { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+    .btn--dark:hover { background: var(--gold-deep); border-color: var(--gold-deep); transform: translateY(-3px); }
+
+    /* ================================================================
+       HERO
+       ================================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: clamp(8.5rem, 15vw, 11.5rem) 1.5rem clamp(4.5rem, 8vw, 7rem);
+      background:
+        linear-gradient(100deg, rgba(20,19,15,0.96) 8%, rgba(20,19,15,0.72) 48%, rgba(20,19,15,0.55) 100%),
+        url("https://images.pexels.com/photos/30726406/pexels-photo-30726406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") center 30% / cover no-repeat;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 190px;
+      background: linear-gradient(to top, var(--ink), transparent);
+      pointer-events: none;
+    }
+    .hero-inner { width: min(1220px, 100%); margin: 0 auto; position: relative; z-index: 3; }
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 900;
+      font-size: clamp(2.85rem, 8.2vw, 7.15rem);
+      line-height: 0.97;
+      letter-spacing: -0.028em;
+      margin: 1.35rem 0 0;
+      color: var(--paper);
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-text {
+      margin: 1.65rem 0 0;
+      max-width: 52ch;
+      font-size: clamp(1rem, 1.55vw, 1.165rem);
+      color: rgba(244, 236, 221, 0.82);
+      font-weight: 300;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.95rem; margin-top: 2.55rem; }
+
+    .hero-meta {
+      margin-top: clamp(3.25rem, 7vw, 5.25rem);
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(1.65rem, 5vw, 4.25rem);
+      border-top: 1px solid rgba(210, 162, 76, 0.28);
+      padding-top: 1.65rem;
+    }
+    .hero-meta dt {
+      font-family: var(--serif);
+      font-size: clamp(1.65rem, 3.4vw, 2.55rem);
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .hero-meta dd {
+      margin: 0.5rem 0 0;
+      font-size: 0.685rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(244, 236, 221, 0.62);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      left: 1.5rem;
+      bottom: 1.55rem;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.635rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(244, 236, 221, 0.55);
+    }
+    .scroll-hint span.line {
+      width: 46px;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    .scroll-hint span.line::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gold-light);
+      animation: slide 2.2s ease-in-out infinite;
+    }
+    @keyframes slide {
+      0% { transform: translateX(-100%); }
+      60%, 100% { transform: translateX(100%); }
+    }
+
+    /* ================================================================
+       FILTER GALERI FOTO
+       ================================================================ */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 2.15rem;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--line-cream);
+      color: var(--brown);
+      font-size: 0.715rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.66rem 1.28rem;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+    }
+    .filter-btn:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+    .filter-btn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--gold-light);
+    }
+    .band--dark .filter-btn { color: rgba(244, 236, 221, 0.72); border-color: var(--line-dark); }
+    .band--dark .filter-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+    .band--dark .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+    /* Grid kontak-sheet (masonry via CSS columns) */
+    .photo-grid {
+      margin-top: 2.65rem;
+      columns: 3;
+      column-gap: 1.35rem;
+    }
+    @media (max-width: 980px) { .photo-grid { columns: 2; } }
+    @media (max-width: 620px) { .photo-grid { columns: 1; } }
+
+    .photo-card {
+      break-inside: avoid;
+      margin-bottom: 1.35rem;
+      position: relative;
+      border: 1px solid var(--line-cream);
+      background: #fff;
+      padding: 0.55rem 0.55rem 0.85rem;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .photo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--gold);
+    }
+    .photo-frame {
+      overflow: hidden;
+      background: var(--ink-3);
+      position: relative;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: auto;
+      filter: saturate(0.62) contrast(1.04);
+      transition: transform 0.75s cubic-bezier(0.2, 0.7, 0.25, 1), filter 0.55s ease;
+    }
+    .photo-card:hover .photo-frame img { transform: scale(1.055); filter: saturate(1.06) contrast(1.02); }
+    .photo-frame::after {
+      content: "\f00e";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 0.85rem;
+      top: 0.85rem;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(20, 19, 15, 0.72);
+      color: var(--gold-light);
+      font-size: 0.82rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .photo-card:hover .photo-frame::after { opacity: 1; transform: translateY(0); }
+
+    .photo-caption {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 0.35rem 0.15rem;
+    }
+    .photo-caption h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.075rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .photo-caption .tag {
+      font-size: 0.615rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .photo-caption p {
+      margin: 0.28rem 0 0;
+      font-size: 0.775rem;
+      color: var(--brown);
+      line-height: 1.55;
+    }
+
+    .empty-state {
+      padding: 3.5rem 1rem;
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.12rem;
+      color: var(--brown);
+      border: 1px dashed var(--line-cream);
+    }
+
+    /* ================================================================
+       VIDEOGRAFI
+       ================================================================ */
+    .video-feature {
+      margin-top: 2.75rem;
+      display: grid;
+      grid-template-columns: 1.42fr 1fr;
+      gap: clamp(1.45rem, 3.4vw, 2.85rem);
+      align-items: center;
+    }
+    @media (max-width: 900px) { .video-feature { grid-template-columns: 1fr; } }
+
+    .video-shell {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--ink-2);
+      border: 1px solid var(--line-dark);
+      overflow: hidden;
+      border-radius: 3px;
+    }
+    .video-shell img, .video-shell iframe, .video-shell video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+      display: block;
+    }
+    .video-shell .play-btn {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, rgba(20,19,15,0.22), rgba(20,19,15,0.62));
+      border: 0;
+      transition: background 0.3s ease;
+    }
+    .video-shell .play-btn:hover { background: rgba(20, 19, 15, 0.42); }
+    .play-circle {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      font-size: 1.42rem;
+      padding-left: 5px;
+      box-shadow: 0 0 0 0 rgba(210, 162, 76, 0.55);
+      animation: pulse 2.6s ease-out infinite;
+      transition: transform 0.3s ease;
+    }
+    .play-btn:hover .play-circle { transform: scale(1.08); }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(210, 162, 76, 0.5); }
+      70% { box-shadow: 0 0 0 26px rgba(210, 162, 76, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(210, 162, 76, 0); }
+    }
+    .video-badge {
+      position: absolute;
+      left: 0.95rem;
+      top: 0.95rem;
+      background: rgba(20, 19, 15, 0.82);
+      color: var(--gold-light);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.42rem 0.85rem;
+      border: 1px solid rgba(210, 162, 76, 0.42);
+    }
+
+    .video-grid {
+      margin-top: 2.85rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.55rem;
+    }
+    @media (max-width: 980px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .video-grid { grid-template-columns: 1fr; } }
+
+    .video-card {
+      background: var(--ink-2);
+      border: 1px solid rgba(210, 162, 76, 0.17);
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .video-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow-lg);
+    }
+    .video-card .video-shell { border: 0; border-radius: 0; }
+    .video-card .play-circle { width: 62px; height: 62px; font-size: 1.02rem; }
+    .video-body { padding: 1.25rem 1.35rem 1.5rem; }
+    .video-body h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--paper);
+      line-height: 1.28;
+    }
+    .video-body p {
+      margin: 0.62rem 0 0;
+      font-size: 0.845rem;
+      color: rgba(244, 236, 221, 0.6);
+      line-height: 1.62;
+    }
+    .role-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1.05rem;
+    }
+    .role-chip {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.155em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      border: 1px solid rgba(210, 162, 76, 0.36);
+      padding: 0.34rem 0.72rem;
+      border-radius: 999px;
+    }
+
+    /* ================================================================
+       PROFIL KREATOR (pita krem + pelat foto kiri)
+       ================================================================ */
+    .split {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: clamp(1.85rem, 4.4vw, 4.25rem);
+      align-items: stretch;
+    }
+    @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+
+    .plate-photo {
+      position: relative;
+      min-height: 440px;
+      overflow: hidden;
+      border-right: 2px solid var(--gold);
+    }
+    .plate-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.82) contrast(1.06);
+    }
+    .plate-photo .plate-tag {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: var(--ink);
+      color: var(--gold-light);
+      font-size: 0.635rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      padding: 0.72rem 1.25rem;
+      border-top: 1px solid var(--gold);
+      border-right: 1px solid var(--gold);
+    }
+    .plate-photo .watermark {
+      position: absolute;
+      right: 1.15rem;
+      bottom: 1.05rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.92rem;
+      color: rgba(250, 244, 232, 0.55);
+      letter-spacing: 0.12em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    }
+
+    .service-list {
+      list-style: none;
+      margin: 2.15rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 1.05rem;
+    }
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+    }
+    .icon-circle {
+      width: 52px;
+      height: 52px;
+      flex: none;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      color: var(--gold-deep);
+      display: grid;
+      place-items: center;
+      font-size: 1.02rem;
+      background: rgba(210, 162, 76, 0.1);
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+    }
+    .service-item:hover .icon-circle {
+      transform: translateY(-3px) rotate(-6deg);
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .band--dark .icon-circle { color: var(--gold-light); }
+    .service-item h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.165rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .band--dark .service-item h3 { color: var(--paper); }
+    .service-item p {
+      margin: 0.18rem 0 0;
+      font-size: 0.845rem;
+      color: var(--brown);
+      line-height: 1.55;
+    }
+    .band--dark .service-item p { color: rgba(244, 236, 221, 0.62); }
+
+    /* ================================================================
+       KEAHLIAN — kartu hitam di atas kertas krem (momen utama)
+       ================================================================ */
+    .skill-layout {
+      display: grid;
+      grid-template-columns: 1.02fr 1fr;
+      gap: clamp(1.65rem, 3.6vw, 3.15rem);
+      margin-top: 2.85rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .skill-layout { grid-template-columns: 1fr; } }
+
+    .skill-panel {
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 12px;
+      padding: clamp(1.85rem, 3.4vw, 2.85rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .skill-panel .panel-label {
+      font-size: 0.685rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .skill-row { margin-top: 1.75rem; }
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(244, 236, 221, 0.88);
+    }
+    .skill-top .pct {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      font-variant-numeric: tabular-nums;
+    }
+    .skill-track {
+      margin-top: 0.62rem;
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(244, 236, 221, 0.13);
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      width: 0;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold) 55%, var(--gold-light));
+      transition: width 1.25s cubic-bezier(0.22, 0.75, 0.25, 1);
+    }
+    .tech-focus {
+      margin-top: 2.15rem;
+      padding-top: 1.55rem;
+      border-top: 1px solid rgba(210, 162, 76, 0.22);
+    }
+    .tech-focus ul {
+      list-style: none;
+      margin: 1.15rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.62rem;
+    }
+    .tech-focus li {
+      font-size: 0.855rem;
+      color: rgba(244, 236, 221, 0.72);
+      display: flex;
+      gap: 0.72rem;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+    .tech-focus li i { color: var(--gold); margin-top: 0.28rem; font-size: 0.68rem; }
+
+    .project-list { display: grid; gap: 1.05rem; }
+    .project-card {
+      display: flex;
+      gap: 1.15rem;
+      align-items: flex-start;
+      background: var(--paper);
+      border: 1px solid var(--line-cream);
+      border-radius: 12px;
+      padding: 1.28rem 1.35rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateX(6px);
+      border-color: var(--gold);
+      box-shadow: 0 18px 36px -26px rgba(140, 106, 43, 0.55);
+    }
+    .project-card .icon-circle {
+      width: 46px;
+      height: 46px;
+      background: var(--ink);
+      color: var(--gold);
+      border-color: var(--ink);
+    }
+    .project-card h4 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.115rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .project-card p {
+      margin: 0.32rem 0 0;
+      font-size: 0.835rem;
+      color: var(--brown);
+      line-height: 1.58;
+    }
+
+    /* ================================================================
+       JEJAK DIGITAL / MEDIA SOSIAL
+       ================================================================ */
+    .social-layout {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: clamp(1.85rem, 4vw, 3.55rem);
+      margin-top: 2.85rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .social-layout { grid-template-columns: 1fr; } }
+
+    .social-list { display: grid; gap: 0.85rem; }
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      background: var(--ink-2);
+      border: 1px solid rgba(210, 162, 76, 0.16);
+      padding: 1.12rem 1.35rem;
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    }
+    .social-item:hover {
+      transform: translateX(8px);
+      border-color: var(--gold);
+      background: rgba(210, 162, 76, 0.09);
+    }
+    .social-item .icon-circle {
+      width: 46px;
+      height: 46px;
+      background: var(--gold);
+      color: var(--ink);
+      border-color: var(--gold);
+    }
+    .social-item h4 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.085rem;
+      font-weight: 700;
+      color: var(--paper);
+    }
+    .social-item p {
+      margin: 0.18rem 0 0;
+      font-size: 0.815rem;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .thumbs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-top: 1.15rem;
+    }
+    .thumbs-grid figure {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line-dark);
+      position: relative;
+    }
+    .thumbs-grid img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      filter: saturate(0.72);
+      transition: transform 0.6s ease, filter 0.5s ease;
+    }
+    .thumbs-grid figure:hover img { transform: scale(1.07); filter: saturate(1.05); }
+    .thumbs-caption {
+      margin: 0.95rem 0 0;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.955rem;
+      color: rgba(244, 236, 221, 0.62);
+    }
+
+    /* ================================================================
+       KONTAK
+       ================================================================ */
+    .contact-cards { display: grid; gap: 0.95rem; margin-top: 2.15rem; }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      background: var(--paper);
+      border: 1px solid var(--line-cream);
+      border-radius: 10px;
+      padding: 1.12rem 1.35rem;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .contact-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .contact-card .icon-circle {
+      width: 46px;
+      height: 46px;
+      background: var(--ink);
+      color: var(--gold);
+      border-color: var(--ink);
+    }
+    .contact-card .label {
+      font-size: 0.625rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brown-soft);
+      font-weight: 600;
+    }
+    .contact-card .value {
+      font-family: var(--serif);
+      font-size: 1.19rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.012em;
+      word-break: break-word;
+    }
+
+    .form-shell {
+      margin-top: 2.35rem;
+      background: var(--paper);
+      border: 1px solid var(--line-cream);
+      border-radius: 12px;
+      padding: clamp(1.55rem, 3vw, 2.35rem);
+    }
+    .field { margin-bottom: 1.05rem; }
+    .field label {
+      display: block;
+      font-size: 0.655rem;
+      letter-spacing: 0.21em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 0.48rem;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 0.925rem;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line-cream);
+      border-radius: 8px;
+      padding: 0.86rem 1.05rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .field textarea { min-height: 138px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--gold-deep);
+      box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.16);
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.05rem; }
+    @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+
+    .form-note {
+      margin: 0.85rem 0 0;
+      font-size: 0.755rem;
+      color: var(--brown-soft);
+      line-height: 1.55;
+    }
+    .form-alert {
+      display: none;
+      margin-top: 1.05rem;
+      padding: 0.92rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.845rem;
+      font-weight: 500;
+    }
+    .form-alert.show { display: block; }
+    .form-alert.ok { background: #E4F0DC; color: #2E5722; border: 1px solid #B5D2A2; }
+    .form-alert.err { background: #F6E2DE; color: #8C2F22; border: 1px solid #DDB2A8; }
+
+    /* ================================================================
+       FOOTER
+       ================================================================ */
+    .site-footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(210, 162, 76, 0.22);
+      padding: clamp(3.25rem, 6vw, 4.85rem) 1.5rem clamp(2.15rem, 4vw, 3.15rem);
+    }
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-quotes {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.12rem, 2.2vw, 1.52rem);
+      color: rgba(244, 236, 221, 0.78);
+      max-width: 40ch;
+      line-height: 1.5;
+    }
+    .footer-socials { display: flex; flex-wrap: wrap; gap: 0.72rem; }
+    .footer-socials a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 1px solid rgba(210, 162, 76, 0.32);
+      display: grid;
+      place-items: center;
+      color: var(--gold-light);
+      transition: all 0.28s ease;
+    }
+    .footer-socials a:hover {
+      background: var(--gold);
+      color: var(--ink);
+      transform: translateY(-4px);
+    }
+    .footer-bottom {
+      margin-top: 2.65rem;
+      padding-top: 1.55rem;
+      border-top: 1px solid rgba(244, 236, 221, 0.11);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: space-between;
+      font-size: 0.765rem;
+      color: rgba(244, 236, 221, 0.48);
+    }
+    .footer-bottom a { color: var(--gold); }
+
+    /* ================================================================
+       LIGHTBOX
+       ================================================================ */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(12, 11, 9, 0.94);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0.85rem, 3vw, 2.35rem);
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
+    .lightbox.open { display: flex; opacity: 1; }
+    .lightbox-figure {
+      margin: 0;
+      max-width: min(1180px, 100%);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.05rem;
+      transform: scale(0.965);
+      transition: transform 0.3s ease;
+    }
+    .lightbox.open .lightbox-figure { transform: scale(1); }
+    .lightbox-figure img {
+      width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      background: var(--ink-2);
+      border: 1px solid rgba(210, 162, 76, 0.28);
+    }
+    .lightbox-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(28, 26, 21, 0.92);
+      border: 1px solid rgba(210, 162, 76, 0.22);
+      padding: 1.05rem 1.35rem;
+    }
+    .lightbox-bar h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2.3vw, 1.65rem);
+      color: var(--paper);
+    }
+    .lightbox-bar p {
+      margin: 0.28rem 0 0;
+      font-size: 0.815rem;
+      color: rgba(244, 236, 221, 0.62);
+      max-width: 72ch;
+    }
+    .lightbox-meta {
+      font-size: 0.655rem;
+      letter-spacing: 0.21em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .lb-count {
+      font-family: var(--serif);
+      font-size: 0.925rem;
+      letter-spacing: 0.16em;
+      color: rgba(244, 236, 221, 0.58);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .lb-btn {
+      position: absolute;
+      background: rgba(210, 162, 76, 0.14);
+      border: 1px solid rgba(210, 162, 76, 0.42);
+      color: var(--gold-light);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.05rem;
+      transition: all 0.25s ease;
+    }
+    .lb-btn:hover { background: var(--gold); color: var(--ink); transform: scale(1.06); }
+    .lb-close { top: 1.15rem; right: 1.15rem; }
+    .lb-prev { left: clamp(0.55rem, 2vw, 1.85rem); top: 50%; transform: translateY(-50%); }
+    .lb-next { right: clamp(0.55rem, 2vw, 1.85rem); top: 50%; transform: translateY(-50%); }
+    .lb-prev:hover, .lb-next:hover { transform: translateY(-50%) scale(1.06); }
+
+    /* ================================================================
+       ANIMASI REVEAL SAAT SCROLL
+       ================================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.85s cubic-bezier(0.22, 0.75, 0.25, 1), transform 0.85s cubic-bezier(0.22, 0.75, 0.25, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Anchor offset agar judul tidak tertutup header */
+    section[id] { scroll-margin-top: 86px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================================================
+       HEADER / NAVIGASI
+       ================================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <!-- LOGO / NAMA ANDA -->
+      <a href="#home" class="brand" aria-label="Beranda Gundethography">
+        <span class="brand-mark">G</span>
+        <span>
+          <span class="brand-name" id="brand-name">Gundethography</span>
+          <span class="brand-sub">Photo &amp; Video</span>
+        </span>
+      </a>
+
+      <!-- MENU NAVIGASI (smooth scroll) -->
+      <nav class="nav-wrap" id="nav-wrap">
+        <button class="nav-close" id="nav-close" aria-label="Tutup menu"><i class="fa-solid fa-xmark"></i></button>
+        <ul class="nav-list">
+          <li><a class="nav-link active" href="#home">Home</a></li>
+          <li><a class="nav-link" href="#fotografi">Fotografi</a></li>
+          <li><a class="nav-link" href="#videografi">Videografi</a></li>
+          <li><a class="nav-link" href="#tentang">Tentang Saya</a></li>
+          <li><a class="nav-link" href="#kontak">Kontak</a></li>
+        </ul>
+        <a class="nav-cta" href="#kontak">Sewa Jasa</a>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Buka menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================================================================
+       HERO
+       ================================================================ -->
+  <section class="hero grain" id="home">
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Fotografer &amp; Video Editor</p>
+
+      <h1 class="hero-title reveal">
+        Menangkap cahaya,<br />
+        <em>merangkai</em> cerita.
+      </h1>
+
+      <p class="hero-text reveal">
+        Saya mendokumentasikan kegiatan pemerintahan, sosial, budaya, dan komunitas —
+        lalu menyusunnya menjadi foto dan video yang kreatif, informatif, dan berdampak positif.
+      </p>
+
+      <div class="hero-actions reveal">
+        <!-- Tombol CTA 1 -->
+        <a class="btn btn--solid" href="#fotografi">
+          <i class="fa-solid fa-images"></i> Lihat Karya
+        </a>
+        <!-- Tombol CTA 2 -->
+        <a class="btn btn--ghost" href="#kontak">
+          <i class="fa-regular fa-paper-plane"></i> Hubungi Saya
+        </a>
+      </div>
+
+      <!-- Statistik kecil (angka dapat diubah bebas) -->
+      <dl class="hero-meta reveal">
+        <div>
+          <dt>500+</dt>
+          <dd>Dokumentasi Kegiatan</dd>
+        </div>
+        <div>
+          <dt>1.200+</dt>
+          <dd>Video &amp; Reels Terbit</dd>
+        </div>
+        <div>
+          <dt>6+</dt>
+          <dd>Tahun Pengalaman</dd>
+        </div>
+        <div>
+          <dt>5</dt>
+          <dd>Kanal Media Sosial Dikelola</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="scroll-hint"><span class="line"></span> Gulir untuk melihat karya</div>
+  </section>
+
+  <!-- ================================================================
+       GALERI FOTOGRAFI  (pita krem — kontak sheet)
+       ================================================================ -->
+  <section class="band band--cream" id="fotografi">
+    <div class="inner">
+      <div class="reveal">
+        <p class="eyebrow">Arsip Visual</p>
+        <h2 class="display display--md">Galeri Fotografi</h2>
+        <p class="lede">
+          Kumpulan momen human interest, dokumentasi kegiatan, dan potret personal —
+          dipilih dari ratusan penugasan lapangan.
+        </p>
+
+        <!-- FILTER KATEGORI (nilai kategori harus sama dengan field "kategori" di data) -->
+        <div class="filter-row" id="photo-filter"></div>
+      </div>
+
+      <!-- GRID FOTO (diisi otomatis oleh JavaScript) -->
+      <div class="photo-grid" id="photo-grid"></div>
+    </div>
+    <span class="page-no">02</span>
+  </section>
+
+  <!-- ================================================================
+       VIDEOGRAFI  (pita gelap — ruang pemutaran)
+       ================================================================ -->
+  <section class="band band--dark grain" id="videografi">
+    <div class="inner">
+      <div class="reveal">
+        <p class="eyebrow">Showreel</p>
+        <h2 class="display display--md">Galeri Videografi</h2>
+        <p class="lede">
+          Dari footage mentah di lapangan menjadi tayangan rapi: dokumentasi kegiatan,
+          video profil, konten short-form, hingga cinematic personal.
+        </p>
+      </div>
+
+      <!-- VIDEO UNGGULAN -->
+      <div class="video-feature reveal">
+        <div class="video-shell" id="feature-video-shell">
+          <!-- PLACEHOLDER: ganti thumbnail & ID YouTube pada data "featuredVideo" -->
+          <img id="feature-thumb" src="" alt="Video unggulan" />
+          <span class="video-badge">Showreel Terbaru</span>
+          <button class="play-btn" id="feature-play" aria-label="Putar video unggulan">
+            <span class="play-circle"><i class="fa-solid fa-play"></i></span>
+          </button>
+        </div>
+
+        <div>
+          <p class="eyebrow">Produksi Pilihan</p>
+          <h3 class="display display--md" style="font-size: clamp(1.75rem, 3.2vw, 2.55rem); margin-top: 0.95rem;" id="feature-title">
+            Showreel 2025
+          </h3>
+          <p class="lede" id="feature-desc" style="font-size: 1.02rem;">
+            Rangkuman karya dokumentasi kegiatan pemerintahan, sosial, dan komunitas.
+          </p>
+          <div class="role-row" id="feature-roles"></div>
+          <a class="btn btn--ghost" style="margin-top: 1.75rem;" id="feature-link" href="https://www.youtube.com/@kelurahansemperbarat" target="_blank" rel="noopener">
+            <i class="fa-brands fa-youtube"></i> Tonton di YouTube
+          </a>
+        </div>
+      </div>
+
+      <!-- GRID VIDEO (diisi otomatis oleh JavaScript) -->
+      <div class="video-grid" id="video-grid"></div>
+    </div>
+    <span class="page-no">03</span>
+  </section>
+
+  <!-- ================================================================
+       TENTANG SAYA / PROFIL KREATOR (pita krem + pelat foto kiri)
+       ================================================================ -->
+  <section class="band band--cream" id="tentang">
+    <div class="inner">
+      <div class="split">
+        <!-- PELAT FOTO PROFIL (ganti URL-nya dengan foto Anda sendiri) -->
+        <div class="plate-photo reveal">
+          <img id="profile-photo" src="" alt="Foto profil fotografer" />
+          <span class="plate-tag">Di Balik Lensa</span>
+          <span class="watermark">GUNDETHOGRAPHY</span>
+        </div>
+
+        <div class="reveal">
+          <p class="eyebrow">Profil Kreator</p>
+          <h2 class="display display--md">Di Balik Lensa</h2>
+          <hr class="rule-gold" />
+
+          <p style="margin: 1.35rem 0 0; font-size: 1.035rem; color: var(--brown); max-width: 62ch; line-height: 1.78;">
+            Saya adalah <strong style="color: var(--ink);">Photographer, Editor Video, dan Content Creator</strong>
+            yang berfokus pada pembuatan konten visual yang kreatif, informatif, dan berdampak positif.
+            Berpengalaman mendokumentasikan kegiatan pemerintahan, sosial, budaya, dan komunitas
+            melalui foto, video, dan konten digital.
+          </p>
+
+          <!-- DAFTAR LAYANAN -->
+          <ul class="service-list" id="service-list"></ul>
+        </div>
+      </div>
+
+      <!-- ================= KEAHLIAN (kartu hitam di atas kertas krem) ================= -->
+      <div class="reveal" style="margin-top: clamp(3.75rem, 8vw, 6.25rem);">
+        <p class="eyebrow">Spesialisasi</p>
+        <h2 class="display display--md">Keahlian Editing Video</h2>
+        <p class="lede">
+          Dari mentah menjadi cerita: menyusun footage kegiatan pemerintahan, sosial, dan personal
+          menjadi tayangan yang rapi, enak ditonton, dan tepat sasaran.
+        </p>
+      </div>
+
+      <div class="skill-layout">
+        <!-- PERANGKAT LUNAK + FOKUS TEKNIK -->
+        <div class="skill-panel reveal" id="skill-panel">
+          <p class="panel-label">Perangkat Lunak</p>
+          <div id="skill-list"></div>
+
+          <div class="tech-focus">
+            <p class="panel-label">Fokus Teknik</p>
+            <ul id="tech-list"></ul>
+          </div>
+        </div>
+
+        <!-- JENIS PROYEK -->
+        <div class="reveal">
+          <p class="panel-label" style="color: var(--gold-deep);">Jenis Proyek yang Dikerjakan</p>
+          <div class="project-list" id="project-list" style="margin-top: 1.15rem;"></div>
+        </div>
+      </div>
+    </div>
+    <span class="page-no">05</span>
+  </section>
+
+  <!-- ================================================================
+       JEJAK DIGITAL / MEDIA SOSIAL (pita gelap)
+       ================================================================ -->
+  <section class="band band--dark grain" id="jejak">
+    <div class="inner">
+      <div class="reveal">
+        <p class="eyebrow">Jejak Digital</p>
+        <h2 class="display display--md">Galeri &amp; Media Sosial</h2>
+        <p class="lede">
+          Kanal-kanal yang saya kelola dan dokumentasikan secara rutin —
+          dari Instagram hingga kanal YouTube resmi.
+        </p>
+      </div>
+
+      <div class="social-layout">
+        <div class="social-list reveal" id="social-list"></div>
+
+        <div class="reveal">
+          <div class="video-shell" style="aspect-ratio: 16/9;">
+            <img id="social-showcase" src="" alt="Kumpulan hasil editing video" />
+            <span class="video-badge">Arsip Editing</span>
+          </div>
+          <p class="thumbs-caption">Kumpulan hasil editing video kegiatan kelurahan &amp; komunitas.</p>
+
+          <div class="thumbs-grid" id="thumbs-grid"></div>
+        </div>
+      </div>
+    </div>
+    <span class="page-no">06</span>
+  </section>
+
+  <!-- ================================================================
+       KONTAK (pita krem + pelat foto kiri)
+       ================================================================ -->
+  <section class="band band--paper" id="kontak">
+    <div class="inner">
+      <div class="split">
+        <!-- PELAT FOTO KONTAK -->
+        <div class="plate-photo reveal">
+          <img id="contact-photo" src="" alt="Dokumentasi di lapangan" />
+          <span class="plate-tag">Bekerja di Lapangan</span>
+          <span class="watermark">GUNDETHOGRAPHY</span>
+        </div>
+
+        <div class="reveal">
+          <p class="eyebrow">Hubungi Saya</p>
+          <h2 class="display display--md">Mari Berkolaborasi</h2>
+          <p class="lede">
+            Terbuka untuk kerja sama dokumentasi acara, produksi video,
+            hingga pengelolaan konten media sosial.
+          </p>
+
+          <!-- INFO KONTAK -->
+          <div class="contact-cards" id="contact-cards"></div>
+
+          <!-- ============ FORMULIR KONTAK ============ -->
+          <!--
+            CARA MENGGUNAKAN FORMULIR:
+            • Secara default formulir akan membuka aplikasi email (mailto) — langsung bisa dipakai.
+            • Ingin kirim langsung ke inbox? Daftar gratis di https://formspree.io,
+              salin ID form Anda (misal: xyzabcd), lalu isi "formspreeEndpoint" pada objek
+              PORTFOLIO_DATA di bagian JavaScript di bawah.
+          -->
+          <form class="form-shell" id="contact-form" novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-nama">Nama Lengkap</label>
+                <input type="text" id="f-nama" name="nama" placeholder="Nama Anda" required />
+              </div>
+              <div class="field">
+                <label for="f-email">Alamat Email</label>
+                <input type="email" id="f-email" name="email" placeholder="nama@email.com" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="f-layanan">Jenis Layanan</label>
+              <select id="f-layanan" name="layanan">
+                <option>Fotografi Event &amp; Dokumentasi</option>
+                <option>Video Editing (Short &amp; Long Form)</option>
+                <option>Konten Media Sosial</option>
+                <option>Desain Konten (Poster, Flyer, Banner)</option>
+                <option>Produksi Video Profil &amp; Company Profile</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="f-pesan">Pesan / Brief Proyek</label>
+              <textarea id="f-pesan" name="pesan" placeholder="Ceritakan kebutuhan acara, tanggal, dan lokasi..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--dark" style="width: 100%; justify-content: center;">
+              <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+            </button>
+
+            <p class="form-note">
+              Dengan mengirim pesan, Anda setuju untuk dihubungi kembali melalui email atau WhatsApp.
+            </p>
+            <div class="form-alert" id="form-alert" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <span class="page-no">08</span>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+       ================================================================ -->
+  <footer class="site-footer">
+    <div class="inner">
+      <div class="footer-top">
+        <p class="footer-quotes">
+          “Setiap kegiatan punya satu momen jujur — tugas saya menemukannya sebelum ia lewat.”
+        </p>
+        <div class="footer-socials" id="footer-socials"></div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> <strong>Gundethography</strong>. Seluruh hak cipta dilindungi.</span>
+        <span>Dibuat &amp; dihosting gratis melalui <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       LIGHTBOX FOTO
+       ================================================================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Tampilan foto ukuran penuh">
+    <button class="lb-btn lb-close" id="lb-close" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-btn lb-prev" id="lb-prev" aria-label="Sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lb-btn lb-next" id="lb-next" aria-label="Selanjutnya"><i class="fa-solid fa-chevron-right"></i></button>
+
+    <figure class="lightbox-figure">
+      <img id="lb-img" src="" alt="" />
+      <figcaption class="lightbox-bar">
+        <div>
+          <span class="lightbox-meta" id="lb-meta">Kategori</span>
+          <h3 id="lb-title">Judul Foto</h3>
+          <p id="lb-desc">Deskripsi foto.</p>
+        </div>
+        <span class="lb-count" id="lb-count">1 / 1</span>
+      </figcaption>
+    </figure>
+  </div>
+
+
+  <!-- ================================================================
+       JAVASCRIPT — DATA KONTEN & LOGIKA
+       ================================================================ -->
+  <script>
+    /* =================================================================
+     * =================================================================
+     *  📸  PANDUAN EDIT KONTEN WEBSITE (BACA DULU YA!)
+     * =================================================================
+     *  Semua teks, foto, video, dan tautan ada di objek `PORTFOLIO_DATA`
+     *  di bawah ini. Anda TIDAK perlu menyentuh kode HTML/CSS di atas.
+     *
+     *  1) GANTI FOTO GALERI:
+     *     Buka `daftarFoto` → ubah nilai `url` dengan alamat gambar Anda.
+     *        • Foto online : "https://......jpg"
+     *        • Foto lokal  : simpan file di folder `images/`
+     *          lalu tulis   "images/foto-1.jpg"
+     *     Tambah foto = salin satu blok { ... }, tempel di bawahnya.
+     *     Hapus foto  = hapus blok { ... } milik foto tersebut.
+     *     `kategori` harus konsisten (Street, Portrait, Landscape, Event, Prewedding)
+     *     supaya tombol filter otomatis menyesuaikan.
+     *
+     *  2) GANTI VIDEO:
+     *     Buka `daftarVideo` → isi `youtubeId` dengan ID video YouTube Anda.
+     *        Contoh link : https://www.youtube.com/watch?v=LXb3EKWsInQ
+     *                                      ID-nya → ^^^^^^^^^^
+     *     `peran` diisi bebas, misal: ["Editor", "Colorist", "Camera Operator"].
+     *     `thumb` adalah gambar poster video (bisa juga diambil dari YouTube).
+     *
+     *  3) GANTI FOTO PROFIL / KONTAK:
+     *     Ubah `profil.foto` dan `profil.fotoKontak`.
+     *
+     *  4) GANTI DATA DIRI & MEDIA SOSIAL:
+     *     Ubah `profil`, `kontak`, dan `daftarSosmed` sesuai kebutuhan.
+     *
+     *  5) FORMULIR KONTAK:
+     *     Isi `formspreeEndpoint` (opsional) agar pesan masuk ke email Anda.
+     * =================================================================
+     * =================================================================
+     */
+
+    const PORTFOLIO_DATA = {
+
+      /* ---------------------------------------------------------------
+         A. PROFIL & IDENTITAS
+         --------------------------------------------------------------- */
+      profil: {
+        namaBrand: "Gundethography",
+        tagline: "Fotografer & Video Editor",
+        foto: "https://images.pexels.com/photos/30726406/pexels-photo-30726406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940", // ← GANTI: foto profil Anda
+        fotoKontak: "https://images.pexels.com/photos/18089262/pexels-photo-18089262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" // ← GANTI: foto tim/aktivitas Anda
+      },
+
+      /* ---------------------------------------------------------------
+         B. DATA KONTAK
+         --------------------------------------------------------------- */
+      kontak: {
+        telepon: "0813 8333 3909",
+        teleponLink: "6281383333909",
+        email: "gundethography@gmail.com",
+        instagram: "@gundethography",
+        instagramLink: "https://instagram.com/gundethography",
+        // Kosongkan ("") jika tidak ingin memakai Formspree
+        formspreeEndpoint: ""
+      },
+
+      /* ---------------------------------------------------------------
+         C. DAFTAR MEDIA SOSIAL / KANAL
+         --------------------------------------------------------------- */
+      daftarSosmed: [
+        { nama: "Instagram Pribadi", handle: "@gundethography",        url: "https://instagram.com/gundethography",   icon: "fa-brands fa-instagram" },
+        { nama: "YouTube — Kelurahan Semper Barat", handle: "youtube.com/@kelurahansemperbarat", url: "https://www.youtube.com/@kelurahansemperbarat", icon: "fa-brands fa-youtube" },
+        { nama: "YouTube — Sekcam Cilincing",       handle: "youtube.com/@OpsihCilincing2025",  url: "https://www.youtube.com/@OpsihCilincing2025",  icon: "fa-brands fa-youtube" },
+        { nama: "YouTube — Lurah Sukarmin",         handle: "youtube.com/@pakarngawi",          url: "https://www.youtube.com/@pakarngawi",          icon: "fa-brands fa-youtube" },
+        { nama: "YouTube — Master Tarno Official",  handle: "youtube.com/@MasterTarnoChannel",  url: "https://www.youtube.com/@MasterTarnoChannel",  icon: "fa-brands fa-youtube" }
+      ],
+
+      /* ---------------------------------------------------------------
+         D. DAFTAR FOTO GALERI
+         --------------------------------------------------------------- */
+      daftarFoto: [
+        {
+          judul: "Energi Pawai Budaya",
+          kategori: "Street",
+          tahun: "2025",
+          deskripsi: "Fotografer dan warga menyatu dalam hiruk pawai budaya — momen human interest yang tak diulang dua kali.",
+          url: "https://images.pexels.com/photos/28347731/pexels-photo-28347731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Perspektif Gang Tua",
+          kategori: "Street",
+          tahun: "2024",
+          deskripsi: "Deretan lensa yang mengabadikan keseharian kota tua di bawah cahaya siang yang tajam.",
+          url: "https://images.pexels.com/photos/18226358/pexels-photo-18226358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Kerumunan yang Mengabadikan",
+          kategori: "Event",
+          tahun: "2025",
+          deskripsi: "Puluhan kamera terangkat bersamaan ketika puncak acara tiba — sinergi dokumentasi publik.",
+          url: "https://images.pexels.com/photos/30726408/pexels-photo-30726408.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Sorot Cahaya Potret",
+          kategori: "Portrait",
+          tahun: "2025",
+          deskripsi: "Pencahayaan dramatis untuk membangun karakter pada sesi potret personal.",
+          url: "https://images.pexels.com/photos/39685652/pexels-photo-39685652.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+        },
+        {
+          judul: "Gerak yang Berbisik",
+          kategori: "Portrait",
+          tahun: "2024",
+          deskripsi: "Eksperimen motion blur hitam putih — potret yang justru bercerita lewat apa yang tak terlihat.",
+          url: "https://images.pexels.com/photos/18089618/pexels-photo-18089618.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Kabut di Lereng",
+          kategori: "Landscape",
+          tahun: "2025",
+          deskripsi: "Satu pohon, seluruh keheningan. Landscape bernuansa monokrom untuk kebutuhan editorial.",
+          url: "https://images.pexels.com/photos/16448972/pexels-photo-16448972.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Senja Halimun",
+          kategori: "Landscape",
+          tahun: "2024",
+          deskripsi: "Kabut tebal membelah padang luas — latar sempurna untuk opening video cinematic.",
+          url: "https://images.pexels.com/photos/35296045/pexels-photo-35296045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Di Tengah Keramaian",
+          kategori: "Event",
+          tahun: "2025",
+          deskripsi: "Fotografer berada jauh di tengah kerumunan untuk menangkap sudut pandang yang jujur.",
+          url: "https://images.pexels.com/photos/18089262/pexels-photo-18089262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Cahaya di Atas Air",
+          kategori: "Prewedding",
+          tahun: "2025",
+          deskripsi: "Siluet pasangan di tepi danau dengan langit dramatis — sesi prewedding bernuansa cinematic.",
+          url: "https://images.pexels.com/photos/15418618/pexels-photo-15418618.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Janji di Ujung Senja",
+          kategori: "Prewedding",
+          tahun: "2025",
+          deskripsi: "Pelukan hangat di tebing batu saat matahari terbenam, dengan gradasi hangat khas grading saya.",
+          url: "https://images.pexels.com/photos/16184048/pexels-photo-16184048.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        },
+        {
+          judul: "Bingkai Langit Pagi",
+          kategori: "Landscape",
+          tahun: "2024",
+          deskripsi: "Lanskap pagi berkabut yang kerap dipakai sebagai latar video profil perusahaan.",
+          url: "https://images.pexels.com/photos/12040567/pexels-photo-12040567.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+        },
+        {
+          judul: "Ruang Kerja Sang Editor",
+          kategori: "Street",
+          tahun: "2025",
+          deskripsi: "Di balik layar: proses kurasi footage dan penyusunan narasi sebelum sebuah video lahir.",
+          url: "https://images.pexels.com/photos/6980270/pexels-photo-6980270.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+        }
+      ],
+
+      /* ---------------------------------------------------------------
+         E. VIDEO UNGGULAN (SHOWREEL)
+         --------------------------------------------------------------- */
+      featuredVideo: {
+        judul: "Showreel Dokumentasi Kegiatan 2025",
+        deskripsi: "Rangkuman liputan agenda kedinasan, sosial, dan budaya — disusun menjadi narasi utuh dengan pacing yang terjaga, color grading hangat, dan lower-third informatif.",
+        peran: ["Editor", "Colorist", "Camera Operator", "Motion Graphics"],
+        thumb: "https://images.pexels.com/photos/30726408/pexels-photo-30726408.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        // ↓ GANTI dengan ID video YouTube Anda
+        youtubeId: "LXb3EKWsInQ",
+        url: "https://www.youtube.com/@kelurahansemperbarat"
+      },
+
+      /* ---------------------------------------------------------------
+         F. DAFTAR VIDEO PORTOFOLIO
+         --------------------------------------------------------------- */
+      daftarVideo: [
+        {
+          judul: "Konten Short-Form: Reels Kegiatan Warga",
+          deskripsi: "Rangkuman kegiatan RW dalam format reels — hook kuat 3 detik pertama, teks bold, ritme cepat.",
+          peran: ["Editor", "Motion Graphics"],
+          thumb: "https://images.pexels.com/photos/30726406/pexels-photo-30726406.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          youtubeId: "aqz-KE-bpKQ" // ← GANTI dengan ID video YouTube Anda
+        },
+        {
+          judul: "Video Dokumentasi Kegiatan Pemerintahan",
+          deskripsi: "Liputan agenda kedinasan Kelurahan & warga, disusun jadi narasi utuh dengan voice over dan caption.",
+          peran: ["Editor", "Camera Operator", "Colorist"],
+          thumb: "https://images.pexels.com/photos/18049698/pexels-photo-18049698.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          youtubeId: "jNQXAC9IVRw" // ← GANTI dengan ID video YouTube Anda
+        },
+        {
+          judul: "Video Profil & Company Profile",
+          deskripsi: "Produksi end-to-end: konsep, shooting, hingga edit akhir siap publikasi resmi.",
+          peran: ["Director", "Editor", "Colorist"],
+          thumb: "https://images.pexels.com/photos/37882540/pexels-photo-37882540.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          youtubeId: "9bZkp7q19f0" // ← GANTI dengan ID video YouTube Anda
+        }
+      ],
+
+      /* ---------------------------------------------------------------
+         G. LAYANAN (Profil Kreator)
+         --------------------------------------------------------------- */
+      daftarLayanan: [
+        { judul: "Fotografi Event & Dokumentasi",        teks: "Liputan penuh dari persiapan hingga penutupan acara.",            icon: "fa-solid fa-camera" },
+        { judul: "Video Editing (Short & Long Form)",    teks: "Reels, TikTok, YouTube Shorts, hingga dokumentasi panjang.",      icon: "fa-solid fa-video" },
+        { judul: "Konten Media Sosial",                  teks: "Instagram, YouTube, dan TikTok dengan alur konten terencana.",   icon: "fa-brands fa-instagram" },
+        { judul: "Desain Konten (Poster, Flyer, Banner)",teks: "Materi publikasi cetak dan digital yang konsisten.",             icon: "fa-solid fa-layer-group" },
+        { judul: "Produksi Video Profil & Company Profile", teks: "Konsep, produksi, hingga final cut siap tayang.",              icon: "fa-solid fa-film" }
+      ],
+
+      /* ---------------------------------------------------------------
+         H. PERANGKAT LUNAK (nilai = persentase keahlian)
+         --------------------------------------------------------------- */
+      daftarSkill: [
+        { nama: "CapCut (Mobile & Desktop)", nilai: 95 },
+        { nama: "Adobe Photoshop",           nilai: 80 },
+        { nama: "Adobe After Effects",       nilai: 65 },
+        { nama: "Adobe Premiere Pro",        nilai: 75 },
+        { nama: "Adobe Lightroom",           nilai: 70 }
+      ],
+
+      /* ---------------------------------------------------------------
+         I. FOKUS TEKNIK
+         --------------------------------------------------------------- */
+      fokusTeknik: [
+        "Color grading & color correction",
+        "Sinkronisasi & mixing audio dasar",
+        "Motion graphics & lower-third teks",
+        "Transisi dinamis untuk reels/shorts",
+        "Manajemen file & backup footage lapangan"
+      ],
+
+      /* ---------------------------------------------------------------
+         J. JENIS PROYEK
+         --------------------------------------------------------------- */
+      daftarProyek: [
+        { judul: "Konten Short-Form",            teks: "Reels, TikTok & YouTube Shorts kegiatan kelurahan — ritme cepat, teks bold, hook di 3 detik pertama.", icon: "fa-solid fa-bolt" },
+        { judul: "Video Dokumentasi Kegiatan",   teks: "Liputan agenda kedinasan & warga, disusun jadi narasi utuh dengan voice over/caption.",                 icon: "fa-solid fa-video" },
+        { judul: "Video Profil / Company Profile", teks: "Produksi end-to-end: konsep, shooting, hingga edit akhir siap publikasi resmi.",                       icon: "fa-solid fa-photo-film" },
+        { judul: "Video Prewedding & Personal",  teks: "Cinematic look dengan color grading hangat dan pemilihan musik yang emosional.",                          icon: "fa-solid fa-heart" }
+      ],
+
+      /* ---------------------------------------------------------------
+         K. GAMBAR PENDUKUNG JEJAK DIGITAL
+         --------------------------------------------------------------- */
+      jejakDigital: {
+        showcase: "https://images.pexels.com/photos/30726408/pexels-photo-30726408.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        thumbs: [
+          "https://images.pexels.com/photos/18226358/pexels-photo-18226358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "https://images.pexels.com/photos/15418618/pexels-photo-15418618.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        ]
+      }
+    };
+
+    /* =================================================================
+     * =================================================================
+     *  ⚙️  LOGIKA WEBSITE (tidak perlu diubah kecuali ingin modifikasi)
+     * =================================================================
+     * ================================================================= */
+    (function () {
+      "use strict";
+
+      const $ = (sel, ctx) => (ctx || document).querySelector(sel);
+      const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
+
+      /* ---------- 1. HEADER & MENU MOBILE ---------- */
+      const header = $("#site-header");
+      const navWrap = $("#nav-wrap");
+      const navToggle = $("#nav-toggle");
+      const navClose = $("#nav-close");
+
+      const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 40);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      const closeMenu = () => navWrap.classList.remove("open");
+      navToggle.addEventListener("click", () => navWrap.classList.add("open"));
+      navClose.addEventListener("click", closeMenu);
+      $$(".nav-link, .nav-cta", navWrap).forEach((a) => a.addEventListener("click", closeMenu));
+
+      /* ---------- 2. NAVIGASI AKTIF SAAT SCROLL ---------- */
+      const sections = $$("section[id]");
+      const navLinks = $$(".nav-link");
+      const spy = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id));
+          });
+        },
+        { rootMargin: "-45% 0px -50% 0px" }
+      );
+      sections.forEach((s) => spy.observe(s));
+
+      /* ---------- 3. ANIMASI REVEAL ---------- */
+      const revealIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              revealIO.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      const bindReveals = () => $$(".reveal:not(.in)").forEach((el) => revealIO.observe(el));
+
+      /* ---------- 4. RENDER PROFIL & IDENTITAS ---------- */
+      $("#brand-name").textContent = PORTFOLIO_DATA.profil.namaBrand;
+      $("#profile-photo").src = PORTFOLIO_DATA.profil.foto;
+      $("#contact-photo").src = PORTFOLIO_DATA.profil.fotoKontak;
+      $("#social-showcase").src = PORTFOLIO_DATA.jejakDigital.showcase;
+      $("#year").textContent = new Date().getFullYear();
+      document.title = PORTFOLIO_DATA.profil.namaBrand + " — " + PORTFOLIO_DATA.profil.tagline;
+
+      /* ---------- 5. GALERI FOTO + FILTER + LIGHTBOX ---------- */
+      const fotoGrid = $("#photo-grid");
+      const filterWrap = $("#photo-filter");
+      const kategoriList = ["Semua", ...Array.from(new Set(PORTFOLIO_DATA.daftarFoto.map((f) => f.kategori)))];
+      let filterAktif = "Semua";
+      let fotoTampil = []; // daftar foto yang sedang tampil (untuk lightbox)
+
+      function renderFilter() {
+        filterWrap.innerHTML = kategoriList
+          .map(
+            (k) =>
+              `<button class="filter-btn${k === filterAktif ? " active" : ""}" data-kategori="${k}">${k}</button>`
+          )
+          .join("");
+        $$(".filter-btn", filterWrap).forEach((btn) =>
+          btn.addEventListener("click", () => {
+            filterAktif = btn.dataset.kategori;
+            renderFilter();
+            renderFoto();
+          })
+        );
+      }
+
+      function renderFoto() {
+        fotoTampil =
+          filterAktif === "Semua"
+            ? PORTFOLIO_DATA.daftarFoto.slice()
+            : PORTFOLIO_DATA.daftarFoto.filter((f) => f.kategori === filterAktif);
+
+        if (!fotoTampil.length) {
+          fotoGrid.innerHTML = `<div class="empty-state">Belum ada foto pada kategori ini.</div>`;
+          return;
+        }
+
+        fotoGrid.innerHTML = fotoTampil
+          .map(
+            (f, i) => `
+            <article class="photo-card reveal" data-index="${i}" tabindex="0" role="button" aria-label="Buka foto ${f.judul}">
+              <div class="photo-frame">
+                <img src="${f.url}" alt="${f.judul}" loading="lazy" />
+              </div>
+              <div class="photo-caption">
+                <div>
+                  <h3>${f.judul}</h3>
+                  <p>${f.deskripsi}</p>
+                </div>
+                <span class="tag">${f.kategori} · ${f.tahun}</span>
+              </div>
+            </article>`
+          )
+          .join("");
+
+        $$(".photo-card", fotoGrid).forEach((card) => {
+          const open = () => openLightbox(Number(card.dataset.index));
+          card.addEventListener("click", open);
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+          });
+        });
+
+        bindReveals();
+      }
+
+      /* ---------- 6. LIGHTBOX ---------- */
+      const lightbox = $("#lightbox");
+      const lbImg = $("#lb-img");
+      let lbIndex = 0;
+
+      function paintLightbox() {
+        const f = fotoTampil[lbIndex];
+        if (!f) return;
+        lbImg.src = f.url;
+        lbImg.alt = f.judul;
+        $("#lb-title").textContent = f.judul;
+        $("#lb-desc").textContent = f.deskripsi;
+        $("#lb-meta").textContent = f.kategori + " · " + f.tahun;
+        $("#lb-count").textContent = lbIndex + 1 + " / " + fotoTampil.length;
+      }
+      function openLightbox(i) {
+        lbIndex = i;
+        paintLightbox();
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      const step = (d) => {
+        lbIndex = (lbIndex + d + fotoTampil.length) % fotoTampil.length;
+        paintLightbox();
+      };
+
+      $("#lb-close").addEventListener("click", closeLightbox);
+      $("#lb-prev").addEventListener("click", (e) => { e.stopPropagation(); step(-1); });
+      $("#lb-next").addEventListener("click", (e) => { e.stopPropagation(); step(1); });
+      lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") step(-1);
+        if (e.key === "ArrowRight") step(1);
+      });
+
+      /* ---------- 7. VIDEO (lazy embed YouTube saat tombol play diklik) ---------- */
+      function buildVideoShell(item, extraClass) {
+        return `
+          <div class="video-shell ${extraClass || ""}">
+            <img src="${item.thumb}" alt="${item.judul}" loading="lazy" />
+            <button class="play-btn" data-yt="${item.youtubeId}" aria-label="Putar ${item.judul}">
+              <span class="play-circle"><i class="fa-solid fa-play"></i></span>
+            </button>
+          </div>`;
+      }
+
+      function bindPlayButtons(scope) {
+        $$(".play-btn[data-yt]", scope).forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const id = btn.dataset.yt;
+            const shell = btn.closest(".video-shell");
+            shell.innerHTML = `<iframe
+              src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1"
+              title="Video portofolio"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>`;
+          });
+        });
+      }
+
+      // Video unggulan
+      const fv = PORTFOLIO_DATA.featuredVideo;
+      $("#feature-thumb").src = fv.thumb;
+      $("#feature-thumb").alt = fv.judul;
+      $("#feature-title").textContent = fv.judul;
+      $("#feature-desc").textContent = fv.deskripsi;
+      $("#feature-link").href = fv.url;
+      $("#feature-roles").innerHTML = fv.peran.map((r) => `<span class="role-chip">${r}</span>`).join("");
+      $("#feature-play").addEventListener("click", () => {
+        const shell = $("#feature-video-shell");
+        shell.innerHTML = `<iframe
+          src="https://www.youtube.com/embed/${fv.youtubeId}?autoplay=1&rel=0&modestbranding=1"
+          title="${fv.judul}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>`;
+      });
+
+      // Grid video
+      $("#video-grid").innerHTML = PORTFOLIO_DATA.daftarVideo
+        .map(
+          (v) => `
+          <article class="video-card reveal">
+            ${buildVideoShell(v)}
+            <div class="video-body">
+              <h3>${v.judul}</h3>
+              <p>${v.deskripsi}</p>
+              <div class="role-row">${v.peran.map((r) => `<span class="role-chip">${r}</span>`).join("")}</div>
+            </div>
+          </article>`
+        )
+        .join("");
+      bindPlayButtons($("#video-grid"));
+
+      /* ---------- 8. LAYANAN, SKILL, PROYEK, TEKNIK ---------- */
+      $("#service-list").innerHTML = PORTFOLIO_DATA.daftarLayanan
+        .map(
+          (s) => `
+          <li class="service-item">
+            <span class="icon-circle"><i class="${s.icon}"></i></span>
+            <div>
+              <h3>${s.judul}</h3>
+              <p>${s.teks}</p>
+            </div>
+          </li>`
+        )
+        .join("");
+
+      $("#skill-list").innerHTML = PORTFOLIO_DATA.daftarSkill
+        .map(
+          (s) => `
+          <div class="skill-row">
+            <div class="skill-top">
+              <span>${s.nama}</span>
+              <span class="pct">${s.nilai}%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-nilai="${s.nilai}"></div></div>
+          </div>`
+        )
+        .join("");
+
+      $("#tech-list").innerHTML = PORTFOLIO_DATA.fokusTeknik
+        .map((t) => `<li><i class="fa-solid fa-circle"></i><span>${t}</span></li>`)
+        .join("");
+
+      $("#project-list").innerHTML = PORTFOLIO_DATA.daftarProyek
+        .map(
+          (p) => `
+          <div class="project-card">
+            <span class="icon-circle"><i class="${p.icon}"></i></span>
+            <div>
+              <h4>${p.judul}</h4>
+              <p>${p.teks}</p>
+            </div>
+          </div>`
+        )
+        .join("");
+
+      /* ---------- 9. ANIMASI BAR KEAHLIAN (momen utama) ---------- */
+      const skillIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            $$(".skill-fill", e.target).forEach((bar) => {
+              bar.style.width = bar.dataset.nilai + "%";
+            });
+            skillIO.unobserve(e.target);
+          });
+        },
+        { threshold: 0.35 }
+      );
+      skillIO.observe($("#skill-panel"));
+
+      /* ---------- 10. JEJAK DIGITAL / MEDIA SOSIAL ---------- */
+      $("#social-list").innerHTML = PORTFOLIO_DATA.daftarSosmed
+        .map(
+          (s) => `
+          <a class="social-item" href="${s.url}" target="_blank" rel="noopener">
+            <span class="icon-circle"><i class="${s.icon}"></i></span>
+            <div>
+              <h4>${s.nama}</h4>
+              <p>${s.handle}</p>
+            </div>
+          </a>`
+        )
+        .join("");
+
+      $("#thumbs-grid").innerHTML = PORTFOLIO_DATA.jejakDigital.thumbs
+        .map((t) => `<figure><img src="${t}" alt="Galeri karya" loading="lazy" /></figure>`)
+        .join("");
+
+      /* ---------- 11. KARTU KONTAK + FOOTER SOSIAL ---------- */
+      const k = PORTFOLIO_DATA.kontak;
+      $("#contact-cards").innerHTML = `
+        <a class="contact-card" href="https://wa.me/${k.teleponLink}" target="_blank" rel="noopener">
+          <span class="icon-circle"><i class="fa-solid fa-phone"></i></span>
+          <div><span class="label">Ponsel / WhatsApp</span><br /><span class="value">${k.telepon}</span></div>
+        </a>
+        <a class="contact-card" href="mailto:${k.email}">
+          <span class="icon-circle"><i class="fa-solid fa-envelope"></i></span>
+          <div><span class="label">Email</span><br /><span class="value">${k.email}</span></div>
+        </a>
+        <a class="contact-card" href="${k.instagramLink}" target="_blank" rel="noopener">
+          <span class="icon-circle"><i class="fa-brands fa-instagram"></i></span>
+          <div><span class="label">Media Sosial</span><br /><span class="value">${k.instagram}</span></div>
+        </a>`;
+
+      $("#footer-socials").innerHTML = [
+        { icon: "fa-brands fa-instagram", url: k.instagramLink },
+        { icon: "fa-brands fa-youtube", url: "https://www.youtube.com/@kelurahansemperbarat" },
+        { icon: "fa-brands fa-linkedin-in", url: "https://www.linkedin.com/" },
+        { icon: "fa-solid fa-envelope", url: "mailto:" + k.email },
+        { icon: "fa-brands fa-whatsapp", url: "https://wa.me/" + k.teleponLink }
+      ]
+        .map((s) => `<a href="${s.url}" target="_blank" rel="noopener" aria-label="Tautan sosial"><i class="${s.icon}"></i></a>`)
+        .join("");
+
+      /* ---------- 12. FORMULIR KONTAK ---------- */
+      const form = $("#contact-form");
+      const alertBox = $("#form-alert");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nama = $("#f-nama").value.trim();
+        const email = $("#f-email").value.trim();
+        const layanan = $("#f-layanan").value;
+        const pesan = $("#f-pesan").value.trim();
+
+        if (!nama || !email || !pesan) {
+          alertBox.className = "form-alert err show";
+          alertBox.textContent = "Mohon lengkapi nama, email, dan pesan sebelum mengirim.";
+          return;
+        }
+
+        // (A) Formspree — aktif jika endpoint diisi
+        if (k.formspreeEndpoint) {
+          alertBox.className = "form-alert ok show";
+          alertBox.textContent = "Mengirim pesan…";
+          fetch(k.formspreeEndpoint, {
+            method: "POST",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({ nama, email, layanan, pesan })
+          })
+            .then((r) => {
+              if (r.ok) {
+                form.reset();
+                alertBox.textContent = "Terima kasih! Pesan Anda sudah terkirim.";
+              } else {
+                throw new Error("gagal");
+              }
+            })
+            .catch(() => {
+              alertBox.className = "form-alert err show";
+              alertBox.textContent = "Maaf, pesan gagal terkirim. Silakan hubungi langsung via email/WhatsApp.";
+            });
+          return;
+        }
+
+        // (B) Fallback: buka aplikasi email (mailto)
+        const subjek = encodeURIComponent("Permintaan " + layanan + " — " + nama);
+        const isi = encodeURIComponent(
+          "Nama: " + nama + "\nEmail: " + email + "\nLayanan: " + layanan + "\n\nPesan:\n" + pesan
+        );
+        window.location.href = "mailto:" + k.email + "?subject=" + subjek + "&body=" + isi;
+
+        alertBox.className = "form-alert ok show";
+        alertBox.textContent = "Aplikasi email Anda sedang dibuka. Terima kasih sudah menghubungi!";
+      });
+
+      /* ---------- 13. JALANKAN RENDER AWAL ---------- */
+      renderFilter();
+      renderFoto();
+      bindReveals();
+    })();
+  </script>
+
+</body>
+</html>
